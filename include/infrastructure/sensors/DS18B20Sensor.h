@@ -2,11 +2,12 @@
 #ifndef DS18B20SENSOR_H
     #define DS18B20SENSOR_H
 
+    #include <Arduino.h>
     #include <OneWire.h>
     #include <DallasTemperature.h>
     #include "domain/Sensor.h"
-    //#include "presentation/EventNotifier.h"
-    //#include "presentation/EventType.h"
+    #include "presentation/EventNotifier.h"
+    #include "presentation/EventType.h"
 
     class DS18B20Sensor : public Sensor {
         private:

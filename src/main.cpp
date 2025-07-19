@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <PCF8574.h>
 #include "infrastructure/sensors/PCF8574Input.h"
 #include "application/WaterLevelConverter.h"
 #include "infrastructure/env.h"
@@ -8,7 +9,9 @@
 #include "infrastructure/web/WebClient.h"
 #include "application/WaterLevelHttpDataSender.h"
 #include "application/TemperatureHttpDataSender.h"
-#include <PCF8574.h>
+#include "infrastructure/actuators/BuzzerActuator.h"
+#include "presentation/observers/BuzzerObserver.h"
+#include "presentation/observers/SerialObserver.h"
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 
@@ -38,6 +41,13 @@ WebClient webClient;
 WaterLevelHttpDataSender waterLevelHttpDataSender(waterLevelConverter, webClient);
 TemperatureHttpDataSender temperatureHttpDataSender(temperatureSensor, webClient);
 
+BuzzerActuator buzzerActuator(BUZZER_PIN);
+
+BuzzerObserver buzzerObserver(buzzerActuator);
+SerialObserver serialObserver;
+
+EventNotifier& eventNotifier = EventNotifier::getInstance();
+
 OTALoader OTA(OTA_HOSTNAME, OTA_PASSWORD);
 
 void setup() {
@@ -47,7 +57,8 @@ void setup() {
 
 	wifiManager.connect();
 
-	temperatureSensor.update(); //move to send data service
+    eventNotifier.addObserver(&buzzerObserver);
+    eventNotifier.addObserver(&serialObserver);
 
 	temperatureHttpDataSender.send();
 	waterLevelHttpDataSender.send();
@@ -58,3 +69,5 @@ void setup() {
 void loop() {
 	OTA.handle();
 }
+
+//TODO: add batery level manager

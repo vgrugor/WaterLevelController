@@ -22,32 +22,72 @@ WaterLevelConverter::WaterLevelConverter(
 int WaterLevelConverter::getPercent() 
 {
     if (this->waterSensor1.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_1_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_1_LEVEL_PERCENT;
     }
 
     if (this->waterSensor2.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_2_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_2_LEVEL_PERCENT;
     }
 
     if (this->waterSensor3.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_3_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_3_LEVEL_PERCENT;
     }
 
     if (this->waterSensor4.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_4_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_4_LEVEL_PERCENT;
     }
 
     if (this->waterSensor5.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_5_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_5_LEVEL_PERCENT;
     }
 
     if (this->waterSensor6.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_6_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_6_LEVEL_PERCENT;
     }
 
     if (this->waterSensor7.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_TEMPERATURE, 
+            String(WATER_SENSOR_3_LEVEL_PERCENT)
+        );
+
         return WATER_SENSOR_7_LEVEL_PERCENT;
     }
+
+    EventNotifier::getInstance().notifyObservers(
+        EventType::READ_TEMPERATURE, 
+        String(WATER_MIN_LEVEL_PERCENT)
+    );
 
     return WATER_MIN_LEVEL_PERCENT;
 }

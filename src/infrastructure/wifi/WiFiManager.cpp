@@ -1,5 +1,4 @@
 #include "infrastructure/wifi/WiFiManager.h"
-#include <Arduino.h>
 
 WiFiManager::WiFiManager(
     const char* ssid, 
@@ -29,21 +28,21 @@ void WiFiManager::connect() {
     WiFi.config(ip, gateway, subnet);
     WiFi.begin(ssid, password);
 
-    //EventNotifier& eventNotifier = EventNotifier::getInstance();
+    EventNotifier& eventNotifier = EventNotifier::getInstance();
 
-    //eventNotifier.notifyObservers(EventType::WIFI_START_CONNECT);
+    eventNotifier.notifyObservers(EventType::WIFI_START_CONNECT);
 
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);
-        //eventNotifier.notifyObservers(EventType::WIFI_TRY_CONNECT);
+        eventNotifier.notifyObservers(EventType::WIFI_TRY_CONNECT);
     }
 
-    //eventNotifier.notifyObservers(EventType::WIFI_CONNECTED);
+    eventNotifier.notifyObservers(EventType::WIFI_CONNECTED);
 }
 
 void WiFiManager::reconnect() {
     if (!isConnected()) {
-        //EventNotifier::getInstance().notifyObservers(EventType::WIFI_RECONNECT);
+        EventNotifier::getInstance().notifyObservers(EventType::WIFI_RECONNECT);
         connect();
     }
 }

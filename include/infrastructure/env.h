@@ -43,7 +43,7 @@
     extern const String WATER_MIN_LEVEL_LITER_RANGE;
 
     //extern const int GREEN_LED_PIN;
-    //extern const int BUZZER_PIN;
+    extern const int BUZZER_PIN;
 
     //extern const int BOARD_LED;
 

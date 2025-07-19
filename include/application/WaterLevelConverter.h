@@ -2,6 +2,7 @@
     #define WATER_LEVEL_CONVERTER_H
 
     #include "infrastructure/sensors/PCF8574Input.h"
+    #include "presentation/EventNotifier.h"
 
     class WaterLevelConverter {
     private:
