@@ -13,8 +13,6 @@
 #include "presentation/observers/BuzzerObserver.h"
 #include "presentation/observers/SerialObserver.h"
 
-DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
-
 PCF8574 pcf(0x20);
 
 PCF8574Input waterSensor1(pcf, 0);
@@ -35,17 +33,18 @@ WaterLevelConverter waterLevelConverter(
 	waterSensor7
 );
 
+DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
+
 WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET);
+
 WebClient webClient;
 
 WaterLevelHttpDataSender waterLevelHttpDataSender(waterLevelConverter, webClient);
 TemperatureHttpDataSender temperatureHttpDataSender(temperatureSensor, webClient);
 
 BuzzerActuator buzzerActuator(BUZZER_PIN);
-
 BuzzerObserver buzzerObserver(buzzerActuator);
 SerialObserver serialObserver;
-
 EventNotifier& eventNotifier = EventNotifier::getInstance();
 
 OTALoader OTA(OTA_HOSTNAME, OTA_PASSWORD);
@@ -55,10 +54,10 @@ void setup() {
 
 	pcf.begin();
 
-	wifiManager.connect();
-
-    eventNotifier.addObserver(&buzzerObserver);
+	eventNotifier.addObserver(&buzzerObserver);
     eventNotifier.addObserver(&serialObserver);
+
+	wifiManager.connect();
 
 	temperatureHttpDataSender.send();
 	waterLevelHttpDataSender.send();
