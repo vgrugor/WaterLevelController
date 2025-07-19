@@ -63,6 +63,4 @@
     extern const String WATER_LITER_SERVER_URL;
     extern const String WATER_TEMPERATURE_SERVER_URL;
 
-    //extern const int SCHEDULER_MAX_TASKS_COUNT;
-
 #endif // ENV_H
