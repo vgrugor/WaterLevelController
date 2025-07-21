@@ -47,6 +47,9 @@
 
     //extern const int BOARD_LED;
 
+    extern const float BATTERY_MAX_LEVEL;
+    extern const float V_REF;
+
     extern const unsigned char TEMPERATURE_SENSOR_PIN;
     extern const String SERVER_IP;
     extern const String SERVER_PORT;

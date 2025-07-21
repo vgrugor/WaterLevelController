@@ -12,6 +12,7 @@
 #include "infrastructure/actuators/BuzzerActuator.h"
 #include "presentation/observers/BuzzerObserver.h"
 #include "presentation/observers/SerialObserver.h"
+#include "infrastructure/sensors/BatteryLevelSensor.h"
 
 PCF8574 pcf(0x20);
 
@@ -34,6 +35,8 @@ WaterLevelConverter waterLevelConverter(
 );
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
+
+BatteryLevelSensor batteryLevelSensor(A0);
 
 WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET);
 
@@ -62,6 +65,8 @@ void setup() {
 	temperatureHttpDataSender.send();
 	waterLevelHttpDataSender.send();
 
+	batteryLevelSensor.readValue(); //TODO: move to data sender
+
 	OTA.begin();
 }
 
@@ -69,4 +74,5 @@ void loop() {
 	OTA.handle();
 }
 
-//TODO: add batery level manager
+//TODO: add batery level data send
+//TODO: use 1 endpoint for all data
