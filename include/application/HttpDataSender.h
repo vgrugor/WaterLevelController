@@ -5,15 +5,21 @@
     #include "application/WaterLevelConverter.h"
     #include "infrastructure/sensors/DS18B20Sensor.h"
     #include "infrastructure/env.h"
+    #include "infrastructure/sensors/BatteryLevelSensor.h"
 
-    class TemperatureHttpDataSender {
+    class HttpDataSender {
         private:
+            WaterLevelConverter& waterLevelConverter;
             DS18B20Sensor& temperatureSensor;
+            BatteryLevelSensor& batteryLevelSensor;
             WebClient& webClient;
+            String buildPath(String percentRange, String litersRange, String temperatureStr, String batteryLevelStr);
 
         public:
-            TemperatureHttpDataSender(
+            HttpDataSender(
+                WaterLevelConverter& waterLevelConverter,
                 DS18B20Sensor& temperatureSensor,
+                BatteryLevelSensor& batteryLevelSensor,
                 WebClient& webClient
             );
             void send();

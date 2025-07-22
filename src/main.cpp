@@ -7,12 +7,11 @@
 #include "infrastructure/loaders/OTALoader.h"
 #include "infrastructure/sensors/DS18B20Sensor.h"
 #include "infrastructure/web/WebClient.h"
-#include "application/WaterLevelHttpDataSender.h"
-#include "application/TemperatureHttpDataSender.h"
 #include "infrastructure/actuators/BuzzerActuator.h"
 #include "presentation/observers/BuzzerObserver.h"
 #include "presentation/observers/SerialObserver.h"
 #include "infrastructure/sensors/BatteryLevelSensor.h"
+#include "application/HttpDataSender.h"
 
 PCF8574 pcf(0x20);
 
@@ -42,8 +41,7 @@ WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SU
 
 WebClient webClient;
 
-WaterLevelHttpDataSender waterLevelHttpDataSender(waterLevelConverter, webClient);
-TemperatureHttpDataSender temperatureHttpDataSender(temperatureSensor, webClient);
+HttpDataSender httpDataSender(waterLevelConverter, temperatureSensor, batteryLevelSensor, webClient);
 
 BuzzerActuator buzzerActuator(BUZZER_PIN);
 BuzzerObserver buzzerObserver(buzzerActuator);
@@ -62,10 +60,7 @@ void setup() {
 
 	wifiManager.connect();
 
-	temperatureHttpDataSender.send();
-	waterLevelHttpDataSender.send();
-
-	batteryLevelSensor.readValue(); //TODO: move to data sender
+	httpDataSender.send();
 
 	OTA.begin();
 }
@@ -73,6 +68,3 @@ void setup() {
 void loop() {
 	OTA.handle();
 }
-
-//TODO: add batery level data send
-//TODO: use 1 endpoint for all data
