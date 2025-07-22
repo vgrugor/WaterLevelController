@@ -54,16 +54,11 @@
     extern const String SERVER_IP;
     extern const String SERVER_PORT;
 
-    extern const String WATER_LEVEL_PERCENT_SERVER_URI;
-    extern const String WATER_LEVEL_LITER_SERVER_URI;
-    extern const String WATER_TEMPERATURE_SERVER_URI;
-
-    extern const String WATER_LEVEL_PERCENT_PARAM_NAME;
-    extern const String WATER_LEVEL_LITER_PARAM_NAME;
-    extern const String WATER_TEMPERATURE_PARAM_NAME;
-
-    extern const String WATER_PERCENT_SERVER_URL;
-    extern const String WATER_LITER_SERVER_URL;
-    extern const String WATER_TEMPERATURE_SERVER_URL;
+    extern const String SHOWER_UPDATE_SERVER_URI;
+    extern const String SHOWER_WATER_LEVEL_PERCENT_PARAM_NAME;
+    extern const String SHOWER_WATER_LEVEL_LITER_PARAM_NAME;
+    extern const String SHOWER_WATER_TEMPERATURE_PARAM_NAME;
+    extern const String SHOWER_BATTERY_LEVEL_PARAM_NAME;
+    extern const String SHOWER_UPDATE_SERVER_URL;
 
 #endif // ENV_H
