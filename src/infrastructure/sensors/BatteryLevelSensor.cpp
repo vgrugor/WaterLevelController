@@ -10,7 +10,7 @@ float BatteryLevelSensor::readValue() {
     float voltage = batteryLevel / 1024.0 * V_REF * BATTERY_MAX_LEVEL;
 
     String voltageString = String(voltage, 2);
-    EventNotifier::getInstance().notifyObservers(EventType::READ_TEMPERATURE, voltageString);
+    EventNotifier::getInstance().notifyObservers(EventType::READ_BATTERY_LEVEL, voltageString);
 
     return voltage;
 }

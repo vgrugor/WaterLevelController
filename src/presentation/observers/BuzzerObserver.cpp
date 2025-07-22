@@ -48,5 +48,19 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
             this->buzzerActuator.setState(LOW);
             delay(100);
             break;
+
+        //battery level events
+        case EventType::READ_BATTERY_LEVEL:
+            this->buzzerActuator.setState(HIGH);
+            delay(100);
+            this->buzzerActuator.setState(LOW);
+            delay(100);
+            break;
+        case EventType::SEND_BATTERY_LEVEL:
+            this->buzzerActuator.setState(HIGH);
+            delay(100);
+            this->buzzerActuator.setState(LOW);
+            delay(100);
+            break;
     }
 }

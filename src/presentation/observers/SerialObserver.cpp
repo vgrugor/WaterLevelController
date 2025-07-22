@@ -17,6 +17,10 @@ void SerialObserver::update(EventType eventType, const String& message) {
         //water level events
         case EventType::READ_WATER_LEVEL: text = "Read water level. Level: " + message + "°C"; break;
         case EventType::SEND_WATER_LEVEL: text = "Send water level. Level: " + message + "°C"; break;
+
+        //battery level events
+        case EventType::READ_BATTERY_LEVEL: text = "Read battery level. Level: " + message + "°C"; break;
+        case EventType::SEND_BATTERY_LEVEL: text = "Send battery level. Level: " + message + "°C"; break;
     }
 
     Serial.println(text);

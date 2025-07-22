@@ -15,6 +15,10 @@
         //water level events
         READ_WATER_LEVEL,
         SEND_WATER_LEVEL,
+
+        //battery level events
+        READ_BATTERY_LEVEL,
+        SEND_BATTERY_LEVEL,
     };
 
 #endif
