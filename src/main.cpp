@@ -12,6 +12,9 @@
 #include "presentation/observers/SerialObserver.h"
 #include "infrastructure/sensors/BatteryLevelSensor.h"
 #include "application/HttpDataSender.h"
+#include "infrastructure/actuators/WaterCommonPinActuator.h"
+
+WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
 PCF8574 pcf(0x20);
 
@@ -30,7 +33,8 @@ WaterLevelConverter waterLevelConverter(
 	waterSensor4, 
 	waterSensor5, 
 	waterSensor6, 
-	waterSensor7
+	waterSensor7,
+	waterCommonPinActuator
 );
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
@@ -68,3 +72,6 @@ void setup() {
 void loop() {
 	OTA.handle();
 }
+
+//добавить общий пин для подачи + при измерении уровня
+//добавить пин, который будет включать цепь делителя напряжения для измерения уровня заряда батареи

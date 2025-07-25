@@ -8,24 +8,30 @@ WaterLevelConverter::WaterLevelConverter(
     PCF8574Input& waterSensor4, 
     PCF8574Input& waterSensor5, 
     PCF8574Input& waterSensor6, 
-    PCF8574Input& waterSensor7
+    PCF8574Input& waterSensor7,
+    WaterCommonPinActuator& waterCommonPinActuator
 ) : waterSensor1(waterSensor1),
     waterSensor2(waterSensor2),
     waterSensor3(waterSensor3),
     waterSensor4(waterSensor4),
     waterSensor5(waterSensor5),
     waterSensor6(waterSensor6),
-    waterSensor7(waterSensor7)
+    waterSensor7(waterSensor7),
+    waterCommonPinActuator(waterCommonPinActuator)
 {
 }
 
 int WaterLevelConverter::getPercent() 
 {
+    this->waterCommonPinActuator.setState(HIGH);
+
     if (this->waterSensor1.isHigh()) {
         EventNotifier::getInstance().notifyObservers(
             EventType::READ_TEMPERATURE, 
             String(WATER_SENSOR_1_LEVEL_PERCENT)
         );
+
+        this->waterCommonPinActuator.setState(LOW);
 
         return WATER_SENSOR_1_LEVEL_PERCENT;
     }
@@ -36,6 +42,8 @@ int WaterLevelConverter::getPercent()
             String(WATER_SENSOR_2_LEVEL_PERCENT)
         );
 
+        this->waterCommonPinActuator.setState(LOW);
+
         return WATER_SENSOR_2_LEVEL_PERCENT;
     }
 
@@ -44,6 +52,8 @@ int WaterLevelConverter::getPercent()
             EventType::READ_TEMPERATURE, 
             String(WATER_SENSOR_3_LEVEL_PERCENT)
         );
+
+        this->waterCommonPinActuator.setState(LOW);
 
         return WATER_SENSOR_3_LEVEL_PERCENT;
     }
@@ -54,6 +64,8 @@ int WaterLevelConverter::getPercent()
             String(WATER_SENSOR_4_LEVEL_PERCENT)
         );
 
+        this->waterCommonPinActuator.setState(LOW);
+
         return WATER_SENSOR_4_LEVEL_PERCENT;
     }
 
@@ -62,6 +74,8 @@ int WaterLevelConverter::getPercent()
             EventType::READ_TEMPERATURE, 
             String(WATER_SENSOR_5_LEVEL_PERCENT)
         );
+
+        this->waterCommonPinActuator.setState(LOW);
 
         return WATER_SENSOR_5_LEVEL_PERCENT;
     }
@@ -72,6 +86,8 @@ int WaterLevelConverter::getPercent()
             String(WATER_SENSOR_6_LEVEL_PERCENT)
         );
 
+        this->waterCommonPinActuator.setState(LOW);
+
         return WATER_SENSOR_6_LEVEL_PERCENT;
     }
 
@@ -80,6 +96,8 @@ int WaterLevelConverter::getPercent()
             EventType::READ_TEMPERATURE, 
             String(WATER_SENSOR_3_LEVEL_PERCENT)
         );
+
+        this->waterCommonPinActuator.setState(LOW);
 
         return WATER_SENSOR_7_LEVEL_PERCENT;
     }

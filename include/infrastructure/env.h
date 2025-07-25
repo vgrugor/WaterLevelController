@@ -44,6 +44,7 @@
 
     //extern const int GREEN_LED_PIN;
     extern const int BUZZER_PIN;
+    extern const int WATER_COMMON_PIN;
 
     //extern const int BOARD_LED;
 
