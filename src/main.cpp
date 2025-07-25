@@ -13,6 +13,8 @@
 #include "infrastructure/sensors/BatteryLevelSensor.h"
 #include "application/HttpDataSender.h"
 #include "infrastructure/actuators/WaterCommonPinActuator.h"
+#include "infrastructure/actuators/BatteryLevelSensorActuator.h"
+#include "application/BatteryLevelService.h"
 
 WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
@@ -39,13 +41,15 @@ WaterLevelConverter waterLevelConverter(
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 
+BatteryLevelSensorActuator batteryLevelSensorActuator(BATTERY_LEVEL_SENSOR_ACTUATOR_PIN);
 BatteryLevelSensor batteryLevelSensor(A0);
+BatteryLevelService batteryLevelService(batteryLevelSensorActuator, batteryLevelSensor);
 
 WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET);
 
 WebClient webClient;
 
-HttpDataSender httpDataSender(waterLevelConverter, temperatureSensor, batteryLevelSensor, webClient);
+HttpDataSender httpDataSender(waterLevelConverter, temperatureSensor, batteryLevelService, webClient);
 
 BuzzerActuator buzzerActuator(BUZZER_PIN);
 BuzzerObserver buzzerObserver(buzzerActuator);
@@ -73,5 +77,4 @@ void loop() {
 	OTA.handle();
 }
 
-//добавить общий пин для подачи + при измерении уровня
-//добавить пин, который будет включать цепь делителя напряжения для измерения уровня заряда батареи
+//добавить отправку % заряда батареи

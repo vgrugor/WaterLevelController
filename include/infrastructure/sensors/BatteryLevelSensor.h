@@ -10,6 +10,7 @@
     class BatteryLevelSensor : public Sensor {
         private:
             int pin;
+            int readAvg(unsigned int countRead);
 
         public:
             BatteryLevelSensor(int pin, unsigned long interval = 0);

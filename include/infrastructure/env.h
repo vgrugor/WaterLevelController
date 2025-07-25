@@ -14,6 +14,7 @@
     extern const char* WIFI_SUBNET;
 
     extern const unsigned int WATER_VOLUME;
+    extern const unsigned int COUNT_BATTERY_LEVEL_READ;
 
     extern const unsigned int WATER_SENSOR_1_LEVEL_PERCENT;
     extern const unsigned int WATER_SENSOR_2_LEVEL_PERCENT;
@@ -45,10 +46,12 @@
     //extern const int GREEN_LED_PIN;
     extern const int BUZZER_PIN;
     extern const int WATER_COMMON_PIN;
+    extern const int BATTERY_LEVEL_SENSOR_ACTUATOR_PIN;
 
     //extern const int BOARD_LED;
 
     extern const float BATTERY_MAX_LEVEL;
+    extern const float BATTERY_MIN_LEVEL;
     extern const float V_REF;
 
     extern const unsigned char TEMPERATURE_SENSOR_PIN;

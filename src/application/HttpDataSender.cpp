@@ -3,12 +3,12 @@
 HttpDataSender::HttpDataSender(
     WaterLevelConverter& waterLevelConverter,
     DS18B20Sensor& temperatureSensor,
-    BatteryLevelSensor& batteryLevelSensor,
+    BatteryLevelService& batteryLevelService,
     WebClient& webClient
 )
     : waterLevelConverter(waterLevelConverter),
     temperatureSensor(temperatureSensor),
-    batteryLevelSensor(batteryLevelSensor),
+    batteryLevelService(batteryLevelService),
     webClient(webClient)
 {
 }
@@ -25,7 +25,7 @@ void HttpDataSender::send()
     String temperatureStr = String(temperature, 2);
     delay(100);
 
-    float batteryLevel = this->batteryLevelSensor.readValue();
+    float batteryLevel = this->batteryLevelService.getVoltage();
     String batteryLevelStr = String(batteryLevel);
     delay(100);
 
