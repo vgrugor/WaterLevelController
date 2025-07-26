@@ -25,36 +25,45 @@ void HttpDataSender::send()
     String temperatureStr = String(temperature, 2);
     delay(100);
 
-    float batteryLevel = this->batteryLevelService.getVoltage();
-    String batteryLevelStr = String(batteryLevel);
+    float batteryVoltage = this->batteryLevelService.getVoltage();
+    String batteryVoltageStr = String(batteryVoltage);
+    delay(100);
+
+    float batteryPercent = this->batteryLevelService.getPercent();
+    String batteryPercentStr = String(batteryPercent);
     delay(100);
 
     this->webClient.get(
-        this->buildPath(percentRange, litersRange, temperatureStr, batteryLevelStr)
+        this->buildPath(percentRange, litersRange, temperatureStr, batteryVoltageStr, batteryPercentStr)
     );
 }
 
 String HttpDataSender::buildPath(
-    String percentRange, 
-    String litersRange, 
+    String waterLevelPercentRange, 
+    String waterLevelLitersRange, 
     String temperatureStr, 
-    String batteryLevelStr
+    String batteryVoltageStr,
+    String batteryPercentStr
 ) {
     return SHOWER_UPDATE_SERVER_URL
         + "?" 
         + SHOWER_WATER_LEVEL_PERCENT_PARAM_NAME 
         + "=" 
-        + percentRange
+        + waterLevelPercentRange
         + "?" 
         + SHOWER_WATER_LEVEL_LITER_PARAM_NAME 
         + "=" 
-        + litersRange
+        + waterLevelLitersRange
         + "?" 
         + SHOWER_WATER_TEMPERATURE_PARAM_NAME 
         + "=" 
         + temperatureStr
         + "?" 
-        + SHOWER_BATTERY_LEVEL_PARAM_NAME 
+        + SHOWER_BATTERY_VOLTAGE_PARAM_NAME 
         + "=" 
-        + batteryLevelStr;
+        + batteryVoltageStr;
+        + "?" 
+        + SHOWER_BATTERY_PERCENT_PARAM_NAME 
+        + "=" 
+        + batteryPercentStr;
 }

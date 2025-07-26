@@ -76,5 +76,3 @@ void setup() {
 void loop() {
 	OTA.handle();
 }
-
-//добавить отправку % заряда батареи

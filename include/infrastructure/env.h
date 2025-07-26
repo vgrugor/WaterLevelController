@@ -62,7 +62,8 @@
     extern const String SHOWER_WATER_LEVEL_PERCENT_PARAM_NAME;
     extern const String SHOWER_WATER_LEVEL_LITER_PARAM_NAME;
     extern const String SHOWER_WATER_TEMPERATURE_PARAM_NAME;
-    extern const String SHOWER_BATTERY_LEVEL_PARAM_NAME;
+    extern const String SHOWER_BATTERY_VOLTAGE_PARAM_NAME;
+    extern const String SHOWER_BATTERY_PERCENT_PARAM_NAME;
     extern const String SHOWER_UPDATE_SERVER_URL;
 
 #endif // ENV_H

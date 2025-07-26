@@ -13,7 +13,13 @@
             DS18B20Sensor& temperatureSensor;
             BatteryLevelService& batteryLevelService;
             WebClient& webClient;
-            String buildPath(String percentRange, String litersRange, String temperatureStr, String batteryLevelStr);
+            String buildPath(
+                String waterLevelPercentRange, 
+                String waterLevelLitersRange, 
+                String temperatureStr, 
+                String batteryVoltageStr, 
+                String batteryPercentStr
+            );
 
         public:
             HttpDataSender(
