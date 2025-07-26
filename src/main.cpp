@@ -15,10 +15,11 @@
 #include "infrastructure/actuators/WaterCommonPinActuator.h"
 #include "infrastructure/actuators/BatteryLevelSensorActuator.h"
 #include "application/BatteryLevelService.h"
+#include <Wire.h>
 
 WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
-PCF8574 pcf(0x20);
+PCF8574 pcf(0x27);
 
 PCF8574Input waterSensor1(pcf, 0);
 PCF8574Input waterSensor2(pcf, 1);
@@ -61,6 +62,7 @@ OTALoader OTA(OTA_HOSTNAME, OTA_PASSWORD);
 void setup() {
 	Serial.begin(115200);
 
+	Wire.begin();
 	pcf.begin();
 
 	eventNotifier.addObserver(&buzzerObserver);
