@@ -43,7 +43,7 @@ void HttpDataSender::send()
     EventNotifier::getInstance().notifyObservers(EventType::SEND_TEMPERATURE, temperatureStr);
 
     String batteryLevel = batteryPercentStr + "% and " + batteryVoltageStr + "v";
-    EventNotifier::getInstance().notifyObservers(EventType::SEND_BATTERY_LEVEL, waterLevel);
+    EventNotifier::getInstance().notifyObservers(EventType::SEND_BATTERY_LEVEL, batteryLevel);
 }
 
 String HttpDataSender::buildPath(
