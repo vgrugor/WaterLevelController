@@ -3,7 +3,6 @@
 
     #include <Arduino.h>
     #include "domain/Sensor.h"
-    #include "presentation/EventNotifier.h"
     #include "presentation/EventType.h"
     #include "infrastructure/env.h"
 

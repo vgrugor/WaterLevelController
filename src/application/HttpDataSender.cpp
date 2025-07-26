@@ -36,6 +36,14 @@ void HttpDataSender::send()
     this->webClient.get(
         this->buildPath(percentRange, litersRange, temperatureStr, batteryVoltageStr, batteryPercentStr)
     );
+
+    String waterLevel = percentRange + "% and " + litersRange + "l";
+    EventNotifier::getInstance().notifyObservers(EventType::SEND_WATER_LEVEL, waterLevel);
+
+    EventNotifier::getInstance().notifyObservers(EventType::SEND_TEMPERATURE, temperatureStr);
+
+    String batteryLevel = batteryPercentStr + "% and " + batteryVoltageStr + "v";
+    EventNotifier::getInstance().notifyObservers(EventType::SEND_BATTERY_LEVEL, waterLevel);
 }
 
 String HttpDataSender::buildPath(

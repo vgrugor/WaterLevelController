@@ -22,6 +22,9 @@ float BatteryLevelService::getVoltage()
 
     float batteryLevel = this->batteryLevelSensor.readValue();
 
+    String voltageString = String(batteryLevel, 2);
+    EventNotifier::getInstance().notifyObservers(EventType::READ_BATTERY_LEVEL, voltageString);
+
     this->batteryLevelSensorActuator.setState(LOW);
 
     return batteryLevel;
