@@ -15,10 +15,11 @@ HttpDataSender::HttpDataSender(
 
 void HttpDataSender::send() 
 {
-    String percentRange = this->waterLevelConverter.getPercentRange();
+    int percentWaterLevel = this->waterLevelConverter.getPercent();
+    String percentWaterLevelStr = String(percentWaterLevel);
     delay(100);
 
-    String litersRange = this->waterLevelConverter.getLitersRange();
+    String litersRangeWaterLevel = this->waterLevelConverter.getLitersRange();
     delay(100);
 
     float temperature = this->temperatureSensor.readValue();
@@ -26,18 +27,18 @@ void HttpDataSender::send()
     delay(100);
 
     float batteryVoltage = this->batteryLevelService.getVoltage();
-    String batteryVoltageStr = String(batteryVoltage);
+    String batteryVoltageStr = String(batteryVoltage, 2);
     delay(100);
 
     float batteryPercent = this->batteryLevelService.getPercent();
-    String batteryPercentStr = String(batteryPercent);
+    String batteryPercentStr = String(batteryPercent, 0);
     delay(100);
 
     this->webClient.get(
-        this->buildPath(percentRange, litersRange, temperatureStr, batteryVoltageStr, batteryPercentStr)
+        this->buildPath(percentWaterLevelStr, litersRangeWaterLevel, temperatureStr, batteryVoltageStr, batteryPercentStr)
     );
 
-    String waterLevel = percentRange + "% and " + litersRange + "l";
+    String waterLevel = percentWaterLevelStr + "% and " + litersRangeWaterLevel + "l";
     EventNotifier::getInstance().notifyObservers(EventType::SEND_WATER_LEVEL, waterLevel);
 
     EventNotifier::getInstance().notifyObservers(EventType::SEND_TEMPERATURE, temperatureStr);

@@ -110,41 +110,6 @@ int WaterLevelConverter::getPercent()
     return WATER_MIN_LEVEL_PERCENT;
 }
 
-String WaterLevelConverter::getPercentRange() 
-{
-    unsigned int percent = this->getPercent();
-
-    if (percent == WATER_SENSOR_1_LEVEL_PERCENT) {
-        return WATER_SENSOR_1_LEVEL_PERCENT_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_2_LEVEL_PERCENT) {
-        return WATER_SENSOR_2_LEVEL_PERCENT_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_3_LEVEL_PERCENT) {
-        return WATER_SENSOR_3_LEVEL_PERCENT_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_4_LEVEL_PERCENT) {
-        return WATER_SENSOR_4_LEVEL_PERCENT_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_5_LEVEL_PERCENT) {
-        return WATER_SENSOR_5_LEVEL_PERCENT_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_6_LEVEL_PERCENT) {
-        return WATER_SENSOR_6_LEVEL_PERCENT_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_7_LEVEL_PERCENT) {
-        return WATER_SENSOR_7_LEVEL_PERCENT_RANGE;
-    }
-
-    return WATER_MIN_LEVEL_PERCENT_RANGE;
-}
-
 String WaterLevelConverter::getLitersRange()
 {
     unsigned int percent = this->getPercent();

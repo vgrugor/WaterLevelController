@@ -28,7 +28,6 @@
             WaterCommonPinActuator& waterCommonPinActuator
         );
         int getPercent();
-        String getPercentRange();
         String getLitersRange();
     };
 
