@@ -5,13 +5,15 @@ WiFiManager::WiFiManager(
     const char* password, 
     const char* ip, 
     const char* gateway, 
-    const char* subnet
+    const char* subnet,
+    DeepSleepManager& deepSleepManager
 ) : 
     ssid(ssid), 
     password(password), 
     ip(ip), 
     gateway(gateway), 
-    subnet(subnet) 
+    subnet(subnet),
+    deepSleepManager(deepSleepManager)
 {
 }
 
@@ -32,9 +34,17 @@ void WiFiManager::connect() {
 
     eventNotifier.notifyObservers(EventType::WIFI_START_CONNECT);
 
+    unsigned int attempts = 0;
+
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);
         eventNotifier.notifyObservers(EventType::WIFI_TRY_CONNECT);
+        attempts++;
+
+        if (attempts > MAX_COUNT_WIFI_CONNECT_ATTEMPTS) {
+            attempts = 0;
+            this->deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
+        }
     }
 
     eventNotifier.notifyObservers(EventType::WIFI_CONNECTED);
@@ -43,7 +53,7 @@ void WiFiManager::connect() {
 void WiFiManager::reconnect() {
     if (!isConnected()) {
         EventNotifier::getInstance().notifyObservers(EventType::WIFI_RECONNECT);
-        connect();
+        this->connect();
     }
 }
 

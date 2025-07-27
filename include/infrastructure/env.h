@@ -12,6 +12,7 @@
     extern const char* WIFI_IP;
     extern const char* WIFI_GATEWAY;
     extern const char* WIFI_SUBNET;
+    extern const unsigned int MAX_COUNT_WIFI_CONNECT_ATTEMPTS;
 
     extern const unsigned int WATER_VOLUME;
     extern const unsigned int COUNT_BATTERY_LEVEL_READ;
@@ -24,15 +25,6 @@
     extern const unsigned int WATER_SENSOR_6_LEVEL_PERCENT;
     extern const unsigned int WATER_SENSOR_7_LEVEL_PERCENT;
     extern const unsigned int WATER_MIN_LEVEL_PERCENT;
-
-    extern const String WATER_SENSOR_1_LEVEL_PERCENT_RANGE;
-    extern const String WATER_SENSOR_2_LEVEL_PERCENT_RANGE;
-    extern const String WATER_SENSOR_3_LEVEL_PERCENT_RANGE;
-    extern const String WATER_SENSOR_4_LEVEL_PERCENT_RANGE;
-    extern const String WATER_SENSOR_5_LEVEL_PERCENT_RANGE;
-    extern const String WATER_SENSOR_6_LEVEL_PERCENT_RANGE;
-    extern const String WATER_SENSOR_7_LEVEL_PERCENT_RANGE;
-    extern const String WATER_MIN_LEVEL_PERCENT_RANGE;
 
     extern const String WATER_SENSOR_1_LEVEL_LITER_RANGE;
     extern const String WATER_SENSOR_2_LEVEL_LITER_RANGE;

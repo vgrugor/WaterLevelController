@@ -46,7 +46,9 @@ BatteryLevelSensorActuator batteryLevelSensorActuator(BATTERY_LEVEL_SENSOR_ACTUA
 BatteryLevelSensor batteryLevelSensor(A0);
 BatteryLevelService batteryLevelService(batteryLevelSensorActuator, batteryLevelSensor);
 
-WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET);
+DeepSleepManager deepSleepManager;
+
+WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET, deepSleepManager);
 
 WebClient webClient;
 
@@ -56,8 +58,6 @@ BuzzerActuator buzzerActuator(BUZZER_PIN);
 BuzzerObserver buzzerObserver(buzzerActuator);
 SerialObserver serialObserver;
 EventNotifier& eventNotifier = EventNotifier::getInstance();
-
-DeepSleepManager deepSleepManager;
 
 void setup() {
 	Serial.begin(115200);
@@ -72,9 +72,9 @@ void setup() {
 
 	httpDataSender.send();
 
-	deepSleepManager.sleepForMinutes(1);
+	deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
 }
 
 void loop() {
-	
+
 }

@@ -4,6 +4,8 @@
     #include <Arduino.h>
     #include <ESP8266WiFi.h>
     #include "presentation/EventNotifier.h"
+    #include "infrastructure/sleep/DeepSleepManager.h"
+    #include "infrastructure/env.h"
 
     class WiFiManager {
         private:
@@ -12,9 +14,17 @@
             const char* ip;
             const char* gateway;
             const char* subnet;
+            DeepSleepManager& deepSleepManager;
 
         public:
-            WiFiManager(const char* ssid, const char* password, const char* ip, const char* gateway, const char* subnet);
+            WiFiManager(
+                const char* ssid, 
+                const char* password, 
+                const char* ip, 
+                const char* gateway, 
+                const char* subnet, 
+                DeepSleepManager& deepSleepManager
+            );
             void connect();
             void reconnect();
             bool isConnected();
