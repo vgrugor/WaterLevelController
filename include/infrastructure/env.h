@@ -67,4 +67,6 @@
     extern const String SHOWER_BATTERY_PERCENT_PARAM_NAME;
     extern const String SHOWER_UPDATE_SERVER_URL;
 
+    extern const unsigned int DEEP_SLEEP_TIME_MINUTES;
+
 #endif // ENV_H

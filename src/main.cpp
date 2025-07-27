@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include <PCF8574.h>
+#include <Wire.h>
 #include "infrastructure/sensors/PCF8574Input.h"
 #include "application/WaterLevelConverter.h"
 #include "infrastructure/env.h"
 #include "infrastructure/wifi/WiFiManager.h"
-#include "infrastructure/loaders/OTALoader.h"
 #include "infrastructure/sensors/DS18B20Sensor.h"
 #include "infrastructure/web/WebClient.h"
 #include "infrastructure/actuators/BuzzerActuator.h"
@@ -15,7 +15,7 @@
 #include "infrastructure/actuators/WaterCommonPinActuator.h"
 #include "infrastructure/actuators/BatteryLevelSensorActuator.h"
 #include "application/BatteryLevelService.h"
-#include <Wire.h>
+#include "infrastructure/sleep/DeepSleepManager.h"
 
 WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
@@ -57,7 +57,7 @@ BuzzerObserver buzzerObserver(buzzerActuator);
 SerialObserver serialObserver;
 EventNotifier& eventNotifier = EventNotifier::getInstance();
 
-OTALoader OTA(OTA_HOSTNAME, OTA_PASSWORD);
+DeepSleepManager deepSleepManager;
 
 void setup() {
 	Serial.begin(115200);
@@ -72,9 +72,9 @@ void setup() {
 
 	httpDataSender.send();
 
-	OTA.begin();
+	deepSleepManager.sleepForMinutes(1);
 }
 
 void loop() {
-	OTA.handle();
+	
 }
