@@ -7,7 +7,7 @@ BatteryLevelSensor::BatteryLevelSensor(int pin, unsigned long updateInterval) : 
 float BatteryLevelSensor::readValue() {
     int batteryLevel = this->readAvg(COUNT_BATTERY_LEVEL_READ);
 
-    float voltage = batteryLevel / 1023.0 * V_REF * BATTERY_MAX_LEVEL;
+    float voltage = batteryLevel / 1023.0 * V_REF * BATTERY_MAX_LEVEL * BATTERY_LEVEL_CORRECT_COEFFICIENT;
 
     return voltage;
 }

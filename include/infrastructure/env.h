@@ -53,6 +53,7 @@
     extern const float BATTERY_MAX_LEVEL;
     extern const float BATTERY_MIN_LEVEL;
     extern const float V_REF;
+    extern const float BATTERY_LEVEL_CORRECT_COEFFICIENT;
 
     extern const unsigned char TEMPERATURE_SENSOR_PIN;
     extern const String SERVER_IP;
