@@ -44,6 +44,8 @@ void HttpDataSender::send()
 
     String batteryLevel = batteryPercentStr + "% and " + batteryVoltageStr + "v";
     EventNotifier::getInstance().notifyObservers(EventType::SEND_BATTERY_LEVEL, batteryLevel);
+
+    EventNotifier::getInstance().notifyObservers(EventType::ALL_DATA_SEND);
 }
 
 String HttpDataSender::buildPath(

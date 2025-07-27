@@ -21,6 +21,9 @@ void SerialObserver::update(EventType eventType, const String& message) {
         //battery level events
         case EventType::READ_BATTERY_LEVEL: text = "Read battery level. Level: " + message; break;
         case EventType::SEND_BATTERY_LEVEL: text = "Send battery level. Level: " + message; break;
+
+        //data send events
+        case EventType::ALL_DATA_SEND: text = "All data send!"; break;
     }
 
     Serial.println(text);

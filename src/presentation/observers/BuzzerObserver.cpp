@@ -18,6 +18,7 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
             delay(100);
             break;
         case EventType::WIFI_CONNECTED: 
+            delay(500);
             this->buzzerActuator.setState(HIGH);
             delay(500);
             this->buzzerActuator.setState(LOW);
@@ -37,30 +38,59 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
 
         //water level events
         case EventType::READ_WATER_LEVEL:
-            this->buzzerActuator.setState(HIGH);
-            delay(100);
-            this->buzzerActuator.setState(LOW);
-            delay(100);
             break;
         case EventType::SEND_WATER_LEVEL:
-            this->buzzerActuator.setState(HIGH);
-            delay(100);
-            this->buzzerActuator.setState(LOW);
-            delay(100);
             break;
 
         //battery level events
         case EventType::READ_BATTERY_LEVEL:
-            this->buzzerActuator.setState(HIGH);
-            delay(100);
-            this->buzzerActuator.setState(LOW);
-            delay(100);
             break;
         case EventType::SEND_BATTERY_LEVEL:
+            break;
+
+        //data send events
+        case EventType::ALL_DATA_SEND:
+            delay(50);
             this->buzzerActuator.setState(HIGH);
-            delay(100);
+            delay(50);
             this->buzzerActuator.setState(LOW);
-            delay(100);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
+            this->buzzerActuator.setState(HIGH);
+            delay(50);
+            this->buzzerActuator.setState(LOW);
+            delay(50);
             break;
     }
 }

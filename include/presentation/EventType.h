@@ -19,6 +19,9 @@
         //battery level events
         READ_BATTERY_LEVEL,
         SEND_BATTERY_LEVEL,
+
+        //data send events
+        ALL_DATA_SEND
     };
 
 #endif
