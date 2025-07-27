@@ -4,6 +4,7 @@
     #include "infrastructure/sensors/PCF8574Input.h"
     #include "infrastructure/actuators/WaterCommonPinActuator.h"
     #include "presentation/EventNotifier.h"
+    #include "application/WaterLitersRangeCalculator.h"
 
     class WaterLevelConverter {
     private:
@@ -15,6 +16,7 @@
         PCF8574Input& waterSensor6;
         PCF8574Input& waterSensor7;
         WaterCommonPinActuator& waterCommonPinActuator;
+        WaterLitersRangeCalculator& waterLitersRangeCalculator;
 
     public:
         WaterLevelConverter(
@@ -25,7 +27,8 @@
             PCF8574Input& waterSensor5, 
             PCF8574Input& waterSensor6, 
             PCF8574Input& waterSensor7,
-            WaterCommonPinActuator& waterCommonPinActuator
+            WaterCommonPinActuator& waterCommonPinActuator,
+            WaterLitersRangeCalculator& waterLitersRangeCalculator
         );
         int getPercent();
         String getLitersRange();

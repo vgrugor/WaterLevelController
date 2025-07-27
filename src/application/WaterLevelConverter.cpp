@@ -9,7 +9,8 @@ WaterLevelConverter::WaterLevelConverter(
     PCF8574Input& waterSensor5, 
     PCF8574Input& waterSensor6, 
     PCF8574Input& waterSensor7,
-    WaterCommonPinActuator& waterCommonPinActuator
+    WaterCommonPinActuator& waterCommonPinActuator,
+    WaterLitersRangeCalculator& waterLitersRangeCalculator
 ) : waterSensor1(waterSensor1),
     waterSensor2(waterSensor2),
     waterSensor3(waterSensor3),
@@ -17,7 +18,8 @@ WaterLevelConverter::WaterLevelConverter(
     waterSensor5(waterSensor5),
     waterSensor6(waterSensor6),
     waterSensor7(waterSensor7),
-    waterCommonPinActuator(waterCommonPinActuator)
+    waterCommonPinActuator(waterCommonPinActuator),
+    waterLitersRangeCalculator(waterLitersRangeCalculator)
 {
 }
 
@@ -114,33 +116,5 @@ String WaterLevelConverter::getLitersRange()
 {
     unsigned int percent = this->getPercent();
 
-    if (percent == WATER_SENSOR_1_LEVEL_PERCENT) {
-        return WATER_SENSOR_1_LEVEL_LITER_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_2_LEVEL_PERCENT) {
-        return WATER_SENSOR_2_LEVEL_LITER_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_3_LEVEL_PERCENT) {
-        return WATER_SENSOR_3_LEVEL_LITER_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_4_LEVEL_PERCENT) {
-        return WATER_SENSOR_4_LEVEL_LITER_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_5_LEVEL_PERCENT) {
-        return WATER_SENSOR_5_LEVEL_LITER_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_6_LEVEL_PERCENT) {
-        return WATER_SENSOR_6_LEVEL_LITER_RANGE;
-    }
-
-    if (percent == WATER_SENSOR_7_LEVEL_PERCENT) {
-        return WATER_SENSOR_7_LEVEL_LITER_RANGE;
-    }
-
-    return WATER_MIN_LEVEL_LITER_RANGE;
+    return this->waterLitersRangeCalculator.getRangeForPercent(percent);
 }
