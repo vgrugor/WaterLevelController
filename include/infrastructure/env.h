@@ -23,16 +23,17 @@
     extern const unsigned int WATER_SENSOR_7_LEVEL_PERCENT;
     extern const unsigned int WATER_MIN_LEVEL_PERCENT;
 
-    extern const int BUZZER_PIN;
     extern const int WATER_COMMON_PIN;
     extern const int BATTERY_LEVEL_SENSOR_ACTUATOR_PIN;
+    extern const unsigned char TEMPERATURE_SENSOR_PIN;
+    extern const int WATER_INTAKE_MODE_BUTTON_PIN;
+    extern const int BUZZER_PIN;
 
     extern const float BATTERY_MAX_LEVEL;
     extern const float BATTERY_MIN_LEVEL;
     extern const float V_REF;
     extern const float BATTERY_LEVEL_CORRECT_COEFFICIENT;
 
-    extern const unsigned char TEMPERATURE_SENSOR_PIN;
     extern const String SERVER_IP;
     extern const String SERVER_PORT;
 

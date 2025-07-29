@@ -17,6 +17,9 @@
 #include "application/BatteryLevelService.h"
 #include "infrastructure/sleep/DeepSleepManager.h"
 #include "application/WaterLitersRangeCalculator.h"
+#include "application/LoadModeService.h"
+
+LoadModeService loadModeService(WATER_INTAKE_MODE_BUTTON_PIN);
 
 WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
@@ -66,19 +69,27 @@ EventNotifier& eventNotifier = EventNotifier::getInstance();
 void setup() {
 	Serial.begin(115200);
 
+	loadModeService.identifyMode();
+
 	Wire.begin();
 	pcf.begin();
 
 	eventNotifier.addObserver(&buzzerObserver);
     eventNotifier.addObserver(&serialObserver);
 
-	wifiManager.connect();
+	if (loadModeService.isWaterIntakeMode()) {
+		
+	} else {
+		wifiManager.connect();
 
-	httpDataSender.send();
+		httpDataSender.send();
 
-	deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
+		deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
+	}
 }
 
 void loop() {
+	if (loadModeService.isWaterIntakeMode()) {
 
+	}
 }
