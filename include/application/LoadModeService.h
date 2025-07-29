@@ -2,6 +2,7 @@
     #define LOAD_MODE_SERVICE_H
 
     #include <Arduino.h>
+    #include "presentation/EventNotifier.h"
 
     class LoadModeService {
         private:
@@ -12,7 +13,6 @@
             LoadModeService(unsigned int loadModeButtonPin);
             void identifyMode();
             bool isWaterIntakeMode();
-            bool isDataSendMode();
     };
 
 #endif

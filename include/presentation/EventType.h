@@ -2,6 +2,10 @@
     #define EVENT_TYPE_H
 
     enum class EventType {
+        //load mode events
+        WATER_INTAKE_MODE_ACTIVATED,
+        DATA_SEND_MODE_ACTIVATED,
+
         //WiFi events
         WIFI_START_CONNECT,
         WIFI_TRY_CONNECT,

@@ -69,20 +69,24 @@ EventNotifier& eventNotifier = EventNotifier::getInstance();
 void setup() {
 	Serial.begin(115200);
 
-	loadModeService.identifyMode();
-
 	Wire.begin();
 	pcf.begin();
 
 	eventNotifier.addObserver(&buzzerObserver);
     eventNotifier.addObserver(&serialObserver);
 
+	loadModeService.identifyMode();
+
 	if (loadModeService.isWaterIntakeMode()) {
-		
+		wifiManager.disable();
+
+
 	} else {
 		wifiManager.connect();
 
 		httpDataSender.send();
+
+		wifiManager.disable();
 
 		deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
 	}
@@ -93,3 +97,7 @@ void loop() {
 
 	}
 }
+
+//добавить обработку ивентов режима загрузки в зуммер обсервер
+//создать сервис для работы в режиме набора воды
+//при наборе 100% переходить в сон на 1 сек и перезагружаться в режиме отправки данных

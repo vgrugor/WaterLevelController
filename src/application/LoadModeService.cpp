@@ -9,14 +9,15 @@ LoadModeService::LoadModeService(unsigned int loadModeButtonPin)
 void LoadModeService::identifyMode() 
 {
     this->isLoadInWaterIntakeMode = !digitalRead(this->loadModeButtonPin);
+
+    if (this->isWaterIntakeMode()) {
+        EventNotifier::getInstance().notifyObservers(EventType::WATER_INTAKE_MODE_ACTIVATED);
+    } else {
+        EventNotifier::getInstance().notifyObservers(EventType::DATA_SEND_MODE_ACTIVATED);
+    }
 }
 
 bool LoadModeService::isWaterIntakeMode() 
 {
     return this->isLoadInWaterIntakeMode;
-}
-
-bool LoadModeService::isDataSendMode() 
-{
-    return !this->isLoadInWaterIntakeMode;
 }

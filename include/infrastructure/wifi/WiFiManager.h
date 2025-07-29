@@ -29,6 +29,7 @@
             void reconnect();
             bool isConnected();
             String getIPAddress();
+            void disable();
     };
 
 #endif // WIFI_MANAGER_H

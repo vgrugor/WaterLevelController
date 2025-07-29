@@ -4,6 +4,14 @@ BuzzerObserver::BuzzerObserver(BuzzerActuator buzzerActuator) : buzzerActuator(b
 
 void BuzzerObserver::update(EventType eventType, const String& message) {
     switch (eventType) {
+        //load mode events
+        case EventType::WATER_INTAKE_MODE_ACTIVATED: 
+            //TODO: add
+            break;
+        case EventType::DATA_SEND_MODE_ACTIVATED: 
+            //TODO: add
+            break;
+
         //WIFI events
         case EventType::WIFI_START_CONNECT: 
             this->buzzerActuator.setState(HIGH);
