@@ -26,7 +26,7 @@
     extern const int WATER_COMMON_PIN;
     extern const int BATTERY_LEVEL_SENSOR_ACTUATOR_PIN;
     extern const unsigned char TEMPERATURE_SENSOR_PIN;
-    extern const int WATER_INTAKE_MODE_BUTTON_PIN;
+    extern const int LOAD_MODE_BUTTON_PIN;
     extern const int BUZZER_PIN;
 
     extern const float BATTERY_MAX_LEVEL;

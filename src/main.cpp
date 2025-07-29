@@ -19,7 +19,7 @@
 #include "application/WaterLitersRangeCalculator.h"
 #include "application/LoadModeService.h"
 
-LoadModeService loadModeService(WATER_INTAKE_MODE_BUTTON_PIN);
+LoadModeService loadModeService(LOAD_MODE_BUTTON_PIN);
 
 WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
