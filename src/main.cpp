@@ -18,6 +18,7 @@
 #include "infrastructure/sleep/DeepSleepManager.h"
 #include "application/WaterLitersRangeCalculator.h"
 #include "application/LoadModeService.h"
+#include "application/WaterIntakeService.h"
 
 LoadModeService loadModeService(LOAD_MODE_BUTTON_PIN);
 
@@ -46,6 +47,8 @@ WaterLevelConverter waterLevelConverter(
 	waterCommonPinActuator,
 	waterLitersRangeCalculator
 );
+
+WaterIntakeService waterIntakeService(waterLevelConverter);
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 
@@ -80,7 +83,7 @@ void setup() {
 	if (loadModeService.isWaterIntakeMode()) {
 		wifiManager.disable();
 
-
+		waterIntakeService.begin();
 	} else {
 		wifiManager.connect();
 
@@ -94,7 +97,7 @@ void setup() {
 
 void loop() {
 	if (loadModeService.isWaterIntakeMode()) {
-
+		waterIntakeService.update();
 	}
 }
 

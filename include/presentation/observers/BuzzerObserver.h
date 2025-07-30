@@ -5,6 +5,7 @@
     #include "Observer.h"
     #include "presentation/EventType.h"
     #include "infrastructure/actuators/BuzzerActuator.h"
+    #include "infrastructure/env.h"
 
     class BuzzerObserver : public Observer {
         private:

@@ -8,6 +8,9 @@ void SerialObserver::update(EventType eventType, const String& message) {
         case EventType::WATER_INTAKE_MODE_ACTIVATED: text = "Water intake mode activated"; break;
         case EventType::DATA_SEND_MODE_ACTIVATED: text = "Data send mode activated"; break;
 
+        //water intake mode events
+        case EventType::WATER_INTAKE_MODE_CHANGE_LEVEL: text = "Water intake level changed to " + message + "%"; break;
+
         //WIFI events
         case EventType::WIFI_START_CONNECT: text = "Start connecting to WiFi"; break;
         case EventType::WIFI_TRY_CONNECT: text = "."; break;

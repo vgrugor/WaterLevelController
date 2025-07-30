@@ -6,6 +6,9 @@
         WATER_INTAKE_MODE_ACTIVATED,
         DATA_SEND_MODE_ACTIVATED,
 
+        //water intake mode events
+        WATER_INTAKE_MODE_CHANGE_LEVEL,
+
         //WiFi events
         WIFI_START_CONNECT,
         WIFI_TRY_CONNECT,
