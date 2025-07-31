@@ -48,15 +48,15 @@ WaterLevelConverter waterLevelConverter(
 	waterLitersRangeCalculator
 );
 
-WaterIntakeService waterIntakeService(waterLevelConverter, WATER_INTAKE_UPDATE_INTERVAL_SECONDS);
+DeepSleepManager deepSleepManager;
+
+WaterIntakeService waterIntakeService(waterLevelConverter, deepSleepManager, WATER_INTAKE_UPDATE_INTERVAL_SECONDS);
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 
 BatteryLevelSensorActuator batteryLevelSensorActuator(BATTERY_LEVEL_SENSOR_ACTUATOR_PIN);
 BatteryLevelSensor batteryLevelSensor(A0);
 BatteryLevelService batteryLevelService(batteryLevelSensorActuator, batteryLevelSensor);
-
-DeepSleepManager deepSleepManager;
 
 WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET, deepSleepManager);
 
@@ -98,7 +98,3 @@ void loop() {
 		waterIntakeService.update();
 	}
 }
-
-//добавить обработку ивентов режима загрузки в зуммер обсервер
-//создать сервис для работы в режиме набора воды
-//при наборе 100% переходить в сон на 1 сек и перезагружаться в режиме отправки данных

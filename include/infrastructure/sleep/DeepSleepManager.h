@@ -10,6 +10,7 @@
 
         public:
             void sleepForMinutes(uint32_t minutes);
+            void sleepAndReload();
     };
 
 #endif

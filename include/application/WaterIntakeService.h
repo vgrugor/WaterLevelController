@@ -3,18 +3,26 @@
 
     #include "application/WaterLevelConverter.h"
     #include "presentation/EventNotifier.h"
+    #include "infrastructure/sleep/DeepSleepManager.h"
     #include <limits>
 
     class WaterIntakeService {
         private:
             WaterLevelConverter& waterLevelConverter;
+            DeepSleepManager& deepSleepManager;
             int previousLevel = std::numeric_limits<int>::min();
             unsigned long lastUpdateTime = 0;
             unsigned long updateInterval;
-            void initCurrentLevel();
+            unsigned int countRead = 0;
+            unsigned int countReadBeforeGoToSleep;
+            void init();
 
         public:
-            WaterIntakeService(WaterLevelConverter& waterLevelConverter, unsigned long updateInterval);
+            WaterIntakeService(
+                WaterLevelConverter& waterLevelConverter, 
+                DeepSleepManager& deepSleepManager,
+                unsigned long updateInterval
+            );
             void update();
     };
 
