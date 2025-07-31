@@ -17,6 +17,10 @@
 #include "application/BatteryLevelService.h"
 #include "infrastructure/sleep/DeepSleepManager.h"
 #include "application/WaterLitersRangeCalculator.h"
+#include "application/LoadModeService.h"
+#include "application/WaterIntakeService.h"
+
+LoadModeService loadModeService(LOAD_MODE_BUTTON_PIN);
 
 WaterCommonPinActuator waterCommonPinActuator(WATER_COMMON_PIN);
 
@@ -44,13 +48,15 @@ WaterLevelConverter waterLevelConverter(
 	waterLitersRangeCalculator
 );
 
+DeepSleepManager deepSleepManager;
+
+WaterIntakeService waterIntakeService(waterLevelConverter, deepSleepManager, WATER_INTAKE_UPDATE_INTERVAL_MILLI_SECONDS);
+
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 
 BatteryLevelSensorActuator batteryLevelSensorActuator(BATTERY_LEVEL_SENSOR_ACTUATOR_PIN);
 BatteryLevelSensor batteryLevelSensor(A0);
 BatteryLevelService batteryLevelService(batteryLevelSensorActuator, batteryLevelSensor);
-
-DeepSleepManager deepSleepManager;
 
 WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD, WIFI_IP, WIFI_GATEWAY, WIFI_SUBNET, deepSleepManager);
 
@@ -72,13 +78,23 @@ void setup() {
 	eventNotifier.addObserver(&buzzerObserver);
     eventNotifier.addObserver(&serialObserver);
 
-	wifiManager.connect();
+	loadModeService.identifyMode();
 
-	httpDataSender.send();
+	if (loadModeService.isWaterIntakeMode()) {
+		wifiManager.disable();
+	} else {
+		wifiManager.connect();
 
-	deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
+		httpDataSender.send();
+
+		wifiManager.disable();
+
+		deepSleepManager.sleepForMinutes(DEEP_SLEEP_TIME_MINUTES);
+	}
 }
 
 void loop() {
-
+	if (loadModeService.isWaterIntakeMode()) {
+		waterIntakeService.update();
+	}
 }

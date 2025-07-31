@@ -64,3 +64,8 @@ bool WiFiManager::isConnected() {
 String WiFiManager::getIPAddress() {
     return WiFi.localIP().toString();
 }
+
+void WiFiManager::disable() {
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_OFF);
+}

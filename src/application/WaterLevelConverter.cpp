@@ -1,5 +1,4 @@
 #include "application/WaterLevelConverter.h"
-#include "infrastructure/env.h"
 
 WaterLevelConverter::WaterLevelConverter(
     PCF8574Input& waterSensor1, 
@@ -27,59 +26,15 @@ int WaterLevelConverter::getPercent()
 {
     this->waterCommonPinActuator.setState(HIGH);
 
-    if (!this->waterSensor1.isHigh()) {
+    if (!this->waterSensor7.isHigh()) {
         EventNotifier::getInstance().notifyObservers(
             EventType::READ_WATER_LEVEL, 
-            String(WATER_SENSOR_1_LEVEL_PERCENT)
+            String(WATER_SENSOR_7_LEVEL_PERCENT)
         );
 
         this->waterCommonPinActuator.setState(LOW);
 
-        return WATER_SENSOR_1_LEVEL_PERCENT;
-    }
-
-    if (!this->waterSensor2.isHigh()) {
-        EventNotifier::getInstance().notifyObservers(
-            EventType::READ_WATER_LEVEL, 
-            String(WATER_SENSOR_2_LEVEL_PERCENT)
-        );
-
-        this->waterCommonPinActuator.setState(LOW);
-
-        return WATER_SENSOR_2_LEVEL_PERCENT;
-    }
-
-    if (!this->waterSensor3.isHigh()) {
-        EventNotifier::getInstance().notifyObservers(
-            EventType::READ_WATER_LEVEL, 
-            String(WATER_SENSOR_3_LEVEL_PERCENT)
-        );
-
-        this->waterCommonPinActuator.setState(LOW);
-
-        return WATER_SENSOR_3_LEVEL_PERCENT;
-    }
-
-    if (!this->waterSensor4.isHigh()) {
-        EventNotifier::getInstance().notifyObservers(
-            EventType::READ_WATER_LEVEL, 
-            String(WATER_SENSOR_4_LEVEL_PERCENT)
-        );
-
-        this->waterCommonPinActuator.setState(LOW);
-
-        return WATER_SENSOR_4_LEVEL_PERCENT;
-    }
-
-    if (!this->waterSensor5.isHigh()) {
-        EventNotifier::getInstance().notifyObservers(
-            EventType::READ_WATER_LEVEL, 
-            String(WATER_SENSOR_5_LEVEL_PERCENT)
-        );
-
-        this->waterCommonPinActuator.setState(LOW);
-
-        return WATER_SENSOR_5_LEVEL_PERCENT;
+        return WATER_SENSOR_7_LEVEL_PERCENT;
     }
 
     if (!this->waterSensor6.isHigh()) {
@@ -93,15 +48,59 @@ int WaterLevelConverter::getPercent()
         return WATER_SENSOR_6_LEVEL_PERCENT;
     }
 
-    if (!this->waterSensor7.isHigh()) {
+    if (!this->waterSensor5.isHigh()) {
         EventNotifier::getInstance().notifyObservers(
             EventType::READ_WATER_LEVEL, 
-            String(WATER_SENSOR_7_LEVEL_PERCENT)
+            String(WATER_SENSOR_5_LEVEL_PERCENT)
         );
 
         this->waterCommonPinActuator.setState(LOW);
 
-        return WATER_SENSOR_7_LEVEL_PERCENT;
+        return WATER_SENSOR_5_LEVEL_PERCENT;
+    }
+
+    if (!this->waterSensor4.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_WATER_LEVEL, 
+            String(WATER_SENSOR_4_LEVEL_PERCENT)
+        );
+
+        this->waterCommonPinActuator.setState(LOW);
+
+        return WATER_SENSOR_4_LEVEL_PERCENT;
+    }
+
+    if (!this->waterSensor3.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_WATER_LEVEL, 
+            String(WATER_SENSOR_3_LEVEL_PERCENT)
+        );
+
+        this->waterCommonPinActuator.setState(LOW);
+
+        return WATER_SENSOR_3_LEVEL_PERCENT;
+    }
+
+    if (!this->waterSensor2.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_WATER_LEVEL, 
+            String(WATER_SENSOR_2_LEVEL_PERCENT)
+        );
+
+        this->waterCommonPinActuator.setState(LOW);
+
+        return WATER_SENSOR_2_LEVEL_PERCENT;
+    }
+
+    if (!this->waterSensor1.isHigh()) {
+        EventNotifier::getInstance().notifyObservers(
+            EventType::READ_WATER_LEVEL, 
+            String(WATER_SENSOR_1_LEVEL_PERCENT)
+        );
+
+        this->waterCommonPinActuator.setState(LOW);
+
+        return WATER_SENSOR_1_LEVEL_PERCENT;
     }
 
     EventNotifier::getInstance().notifyObservers(
