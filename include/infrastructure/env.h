@@ -22,6 +22,7 @@
     extern const unsigned int WATER_SENSOR_6_LEVEL_PERCENT;
     extern const unsigned int WATER_SENSOR_7_LEVEL_PERCENT;
     extern const unsigned int WATER_MIN_LEVEL_PERCENT;
+    extern const unsigned long WATER_INTAKE_UPDATE_INTERVAL_SECONDS;
 
     extern const int WATER_COMMON_PIN;
     extern const int BATTERY_LEVEL_SENSOR_ACTUATOR_PIN;

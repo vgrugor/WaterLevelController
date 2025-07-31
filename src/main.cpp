@@ -48,7 +48,7 @@ WaterLevelConverter waterLevelConverter(
 	waterLitersRangeCalculator
 );
 
-WaterIntakeService waterIntakeService(waterLevelConverter);
+WaterIntakeService waterIntakeService(waterLevelConverter, WATER_INTAKE_UPDATE_INTERVAL_SECONDS);
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 
@@ -82,8 +82,6 @@ void setup() {
 
 	if (loadModeService.isWaterIntakeMode()) {
 		wifiManager.disable();
-
-		waterIntakeService.begin();
 	} else {
 		wifiManager.connect();
 
