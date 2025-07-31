@@ -3,10 +3,10 @@
 WaterIntakeService::WaterIntakeService(
     WaterLevelConverter& waterLevelConverter, 
     DeepSleepManager& deepSleepManager,
-    unsigned long updateInterval
+    unsigned long updateIntervalMilliSeconds
 ) : waterLevelConverter(waterLevelConverter),
     deepSleepManager(deepSleepManager),
-    updateInterval(updateInterval)
+    updateIntervalMilliSeconds(updateIntervalMilliSeconds)
 {
 }
 
@@ -16,7 +16,7 @@ void WaterIntakeService::update()
 
     unsigned long currentTime = millis();
 
-    if ((unsigned long) (currentTime - this->lastUpdateTime) >= this->updateInterval) {
+    if ((unsigned long) (currentTime - this->lastUpdateTime) >= this->updateIntervalMilliSeconds) {
         int currentLevel = this->waterLevelConverter.getPercent();
 
         if (currentLevel != this->previousLevel) {
@@ -47,7 +47,7 @@ void WaterIntakeService::update()
 void WaterIntakeService::init()
 {
     if (this->previousLevel == std::numeric_limits<int>::min()) {
-        this->countReadBeforeGoToSleep = WATER_INTAKE_INTERVAL_GO_TO_SLEEP_IF_LEVEL_NOT_CHANGED_MINUTES * 60 / WATER_INTAKE_UPDATE_INTERVAL_SECONDS;
+        this->countReadBeforeGoToSleep = (WATER_INTAKE_INTERVAL_GO_TO_SLEEP_IF_LEVEL_NOT_CHANGED_MINUTES * 60 * 1000) / WATER_INTAKE_UPDATE_INTERVAL_MILLI_SECONDS;
 
         this->previousLevel = this->waterLevelConverter.getPercent();
 

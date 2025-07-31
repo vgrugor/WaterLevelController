@@ -50,7 +50,7 @@ WaterLevelConverter waterLevelConverter(
 
 DeepSleepManager deepSleepManager;
 
-WaterIntakeService waterIntakeService(waterLevelConverter, deepSleepManager, WATER_INTAKE_UPDATE_INTERVAL_SECONDS);
+WaterIntakeService waterIntakeService(waterLevelConverter, deepSleepManager, WATER_INTAKE_UPDATE_INTERVAL_MILLI_SECONDS);
 
 DS18B20Sensor temperatureSensor(TEMPERATURE_SENSOR_PIN);
 

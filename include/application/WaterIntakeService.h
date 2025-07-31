@@ -12,7 +12,7 @@
             DeepSleepManager& deepSleepManager;
             int previousLevel = std::numeric_limits<int>::min();
             unsigned long lastUpdateTime = 0;
-            unsigned long updateInterval;
+            unsigned long updateIntervalMilliSeconds;
             unsigned int countRead = 0;
             unsigned int countReadBeforeGoToSleep;
             void init();
@@ -21,7 +21,7 @@
             WaterIntakeService(
                 WaterLevelConverter& waterLevelConverter, 
                 DeepSleepManager& deepSleepManager,
-                unsigned long updateInterval
+                unsigned long updateIntervalMilliSeconds
             );
             void update();
     };
