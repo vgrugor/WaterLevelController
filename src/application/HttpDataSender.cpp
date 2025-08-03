@@ -35,8 +35,7 @@ void HttpDataSender::send()
         this->buildPath(literWaterLevelStr, temperatureStr, batteryVoltageStr, batteryPercentStr)
     );
 
-    String waterLevel = literWaterLevelStr + "l";
-    EventNotifier::getInstance().notifyObservers(EventType::SEND_WATER_LEVEL, waterLevel);
+    EventNotifier::getInstance().notifyObservers(EventType::SEND_WATER_LEVEL, literWaterLevelStr);
 
     EventNotifier::getInstance().notifyObservers(EventType::SEND_TEMPERATURE, temperatureStr);
 
