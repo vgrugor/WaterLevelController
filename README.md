@@ -1,5 +1,7 @@
 
-![WaterLevelControllerElements](https://github.com/user-attachments/assets/3711edce-70a1-4242-bc1b-f275db1961c8)
+![WaterLevelControllerElements (1)](https://github.com/user-attachments/assets/b04a517f-ccfc-445f-998f-c748a1071114)
 
-![WaterLevelController (1)](https://github.com/user-attachments/assets/0fc7fedd-112a-4ff9-92ad-530b91ee287d)
 
+![WaterLevelController (2)](https://github.com/user-attachments/assets/3c300df7-9216-407d-ad4f-6b4e96ef614f)
+
+<img width="659" height="825" alt="Снимок экрана (26)" src="https://github.com/user-attachments/assets/a1ad8096-0807-4e4d-9c28-850f34865562" />
