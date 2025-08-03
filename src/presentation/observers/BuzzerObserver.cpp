@@ -9,7 +9,7 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
         //load mode events
         case EventType::WATER_INTAKE_MODE_ACTIVATED: this->signal(1, 4000, 1000); break;
         case EventType::DATA_SEND_MODE_ACTIVATED: this->signal(3, 100, 100); break;
-        case EventType::GO_TO_SLEEP: break;
+        case EventType::GO_TO_SLEEP: this->signal(3, 10, 10); break;
 
         //water intake mode events
         case EventType::WATER_INTAKE_MODE_CHANGE_LEVEL: {
@@ -35,10 +35,8 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
             }
 
             if (countSignal > 0) {
-                delayMillis = 1000;
-                this->signal(countSignal, 1000, 1000);
+                this->signal(countSignal, 1000, 300);
             } else {
-                delayMillis = 10;
                 this->signal(10, 10, 10);
             }
 
