@@ -7,9 +7,10 @@ void SerialObserver::update(EventType eventType, const String& message) {
         //load mode events
         case EventType::WATER_INTAKE_MODE_ACTIVATED: text = "Water intake mode activated"; break;
         case EventType::DATA_SEND_MODE_ACTIVATED: text = "Data send mode activated"; break;
+        case EventType::GO_TO_SLEEP: text = "Go to sleep"; break;
 
         //water intake mode events
-        case EventType::WATER_INTAKE_MODE_CHANGE_LEVEL: text = "Water intake level changed to " + message + "%"; break;
+        case EventType::WATER_INTAKE_MODE_CHANGE_LEVEL: text = "Water intake level changed to " + message + "l"; break;
 
         //WIFI events
         case EventType::WIFI_START_CONNECT: text = "Start connecting to WiFi"; break;
@@ -22,8 +23,8 @@ void SerialObserver::update(EventType eventType, const String& message) {
         case EventType::SEND_TEMPERATURE: text = "Send temperature data. Temperature: " + message + "°C"; break;
 
         //water level events
-        case EventType::READ_WATER_LEVEL: text = "Read water level. Level: " + message + "%"; break;
-        case EventType::SEND_WATER_LEVEL: text = "Send water level: " + message; break;
+        case EventType::READ_WATER_LEVEL: text = "Read water level. Level: " + message + "l"; break;
+        case EventType::SEND_WATER_LEVEL: text = "Send water level: " + message + "l"; break;
 
         //battery level events
         case EventType::READ_BATTERY_LEVEL: text = "Read battery level. Level: " + message; break;

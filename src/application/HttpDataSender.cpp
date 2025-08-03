@@ -15,11 +15,8 @@ HttpDataSender::HttpDataSender(
 
 void HttpDataSender::send() 
 {
-    int percentWaterLevel = this->waterLevelConverter.getPercent();
-    String percentWaterLevelStr = String(percentWaterLevel);
-    delay(100);
-
-    String litersRangeWaterLevel = this->waterLevelConverter.getLitersRange();
+    int literWaterLevel = this->waterLevelConverter.getLiter();
+    String literWaterLevelStr = String(literWaterLevel);
     delay(100);
 
     float temperature = this->temperatureSensor.readValue();
@@ -35,11 +32,10 @@ void HttpDataSender::send()
     delay(100);
 
     this->webClient.get(
-        this->buildPath(percentWaterLevelStr, litersRangeWaterLevel, temperatureStr, batteryVoltageStr, batteryPercentStr)
+        this->buildPath(literWaterLevelStr, temperatureStr, batteryVoltageStr, batteryPercentStr)
     );
 
-    String waterLevel = percentWaterLevelStr + "% and " + litersRangeWaterLevel + "l";
-    EventNotifier::getInstance().notifyObservers(EventType::SEND_WATER_LEVEL, waterLevel);
+    EventNotifier::getInstance().notifyObservers(EventType::SEND_WATER_LEVEL, literWaterLevelStr);
 
     EventNotifier::getInstance().notifyObservers(EventType::SEND_TEMPERATURE, temperatureStr);
 
@@ -50,21 +46,16 @@ void HttpDataSender::send()
 }
 
 String HttpDataSender::buildPath(
-    String waterLevelPercentRange, 
-    String waterLevelLitersRange, 
+    String literWaterLevelStr, 
     String temperatureStr, 
     String batteryVoltageStr,
     String batteryPercentStr
 ) {
     return SHOWER_UPDATE_SERVER_URL
         + "?" 
-        + SHOWER_WATER_LEVEL_PERCENT_PARAM_NAME 
-        + "=" 
-        + waterLevelPercentRange
-        + "?" 
         + SHOWER_WATER_LEVEL_LITER_PARAM_NAME 
         + "=" 
-        + waterLevelLitersRange
+        + literWaterLevelStr
         + "?" 
         + SHOWER_WATER_TEMPERATURE_PARAM_NAME 
         + "=" 

@@ -14,8 +14,7 @@
             BatteryLevelService& batteryLevelService;
             WebClient& webClient;
             String buildPath(
-                String waterLevelPercentRange, 
-                String waterLevelLitersRange, 
+                String literWaterLevelStr, 
                 String temperatureStr, 
                 String batteryVoltageStr, 
                 String batteryPercentStr
