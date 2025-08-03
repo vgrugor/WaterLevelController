@@ -5,6 +5,7 @@
         //load mode events
         WATER_INTAKE_MODE_ACTIVATED,
         DATA_SEND_MODE_ACTIVATED,
+        GO_TO_SLEEP,
 
         //water intake mode events
         WATER_INTAKE_MODE_CHANGE_LEVEL,

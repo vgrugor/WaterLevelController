@@ -7,22 +7,9 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
 
     switch (eventType) {
         //load mode events
-        case EventType::WATER_INTAKE_MODE_ACTIVATED: 
-            this->buzzerActuator.setState(HIGH);
-            delay(4000);
-            this->buzzerActuator.setState(LOW);
-            delay(1000);
-            break;
-        case EventType::DATA_SEND_MODE_ACTIVATED: 
-            delayMillis = 100;
-
-            for (int i = 1; i <= 3; i++) {
-                this->buzzerActuator.setState(HIGH);
-                delay(delayMillis);
-                this->buzzerActuator.setState(LOW);
-                delay(delayMillis);
-            }
-            break;
+        case EventType::WATER_INTAKE_MODE_ACTIVATED: this->signal(1, 4000, 1000); break;
+        case EventType::DATA_SEND_MODE_ACTIVATED: this->signal(3, 100, 100); break;
+        case EventType::GO_TO_SLEEP: break;
 
         //water intake mode events
         case EventType::WATER_INTAKE_MODE_CHANGE_LEVEL: {
@@ -49,114 +36,44 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
 
             if (countSignal > 0) {
                 delayMillis = 1000;
-
-                for (int i = 1; i <= countSignal; i++) {
-                    this->buzzerActuator.setState(HIGH);
-                    delay(delayMillis);
-                    this->buzzerActuator.setState(LOW);
-                    delay(delayMillis);
-                }
+                this->signal(countSignal, 1000, 1000);
             } else {
                 delayMillis = 10;
-
-                for (int i = 1; i <= 10; i++) {
-                    this->buzzerActuator.setState(HIGH);
-                    delay(delayMillis);
-                    this->buzzerActuator.setState(LOW);
-                    delay(delayMillis);
-                }
+                this->signal(10, 10, 10);
             }
 
             break;
         }
 
         //WIFI events
-        case EventType::WIFI_START_CONNECT: 
-            this->buzzerActuator.setState(HIGH);
-            delay(1000);
-            this->buzzerActuator.setState(LOW);
-            delay(1000);
-            break;
-        case EventType::WIFI_TRY_CONNECT: 
-            this->buzzerActuator.setState(HIGH);
-            delay(100);
-            this->buzzerActuator.setState(LOW);
-            delay(100);
-            break;
-        case EventType::WIFI_CONNECTED: 
-            delay(500);
-            this->buzzerActuator.setState(HIGH);
-            delay(500);
-            this->buzzerActuator.setState(LOW);
-            delay(500);
-            this->buzzerActuator.setState(HIGH);
-            delay(500);
-            this->buzzerActuator.setState(LOW);
-            break;
-        case EventType::WIFI_RECONNECT: 
-            break;
+        case EventType::WIFI_START_CONNECT: this->signal(1, 1000, 1000); break;
+        case EventType::WIFI_TRY_CONNECT: this->signal(1, 100, 100); break;
+        case EventType::WIFI_CONNECTED: this->signal(2, 500, 500); break;
+        case EventType::WIFI_RECONNECT: break;
 
         //temperature events
-        case EventType::READ_TEMPERATURE:
-            break;
-        case EventType::SEND_TEMPERATURE:
-            break;
+        case EventType::READ_TEMPERATURE: break;
+        case EventType::SEND_TEMPERATURE: break;
 
         //water level events
-        case EventType::READ_WATER_LEVEL:
-            break;
-        case EventType::SEND_WATER_LEVEL:
-            break;
+        case EventType::READ_WATER_LEVEL: break;
+        case EventType::SEND_WATER_LEVEL: break;
 
         //battery level events
-        case EventType::READ_BATTERY_LEVEL:
-            break;
-        case EventType::SEND_BATTERY_LEVEL:
-            break;
+        case EventType::READ_BATTERY_LEVEL: break;
+        case EventType::SEND_BATTERY_LEVEL: break;
 
         //data send events
-        case EventType::ALL_DATA_SEND:
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            this->buzzerActuator.setState(HIGH);
-            delay(50);
-            this->buzzerActuator.setState(LOW);
-            delay(50);
-            break;
+        case EventType::ALL_DATA_SEND: this->signal(10, 50, 50); break;
+    }
+}
+
+void BuzzerObserver::signal(int count, int onTime, int offTime) {
+    for (int i = 0; i < count; ++i) {
+        delay(offTime);
+        this->buzzerActuator.setState(HIGH);
+        delay(onTime);
+        this->buzzerActuator.setState(LOW);
+        delay(offTime);
     }
 }

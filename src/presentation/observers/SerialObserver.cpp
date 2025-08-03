@@ -7,6 +7,7 @@ void SerialObserver::update(EventType eventType, const String& message) {
         //load mode events
         case EventType::WATER_INTAKE_MODE_ACTIVATED: text = "Water intake mode activated"; break;
         case EventType::DATA_SEND_MODE_ACTIVATED: text = "Data send mode activated"; break;
+        case EventType::GO_TO_SLEEP: text = "Go to sleep"; break;
 
         //water intake mode events
         case EventType::WATER_INTAKE_MODE_CHANGE_LEVEL: text = "Water intake level changed to " + message + "l"; break;

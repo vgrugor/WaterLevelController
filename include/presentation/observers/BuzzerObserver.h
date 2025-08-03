@@ -14,6 +14,7 @@
         public:
             BuzzerObserver(BuzzerActuator buzzerActuator);
             void update(EventType eventType, const String& message = "") override;
+            void signal(int count, int onTime, int offTime);
     };
 
 #endif // BUZZER_OBSERVER_H

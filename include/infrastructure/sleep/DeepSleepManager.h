@@ -3,6 +3,7 @@
 
     #include <Arduino.h>
     #include <ESP8266WiFi.h>
+    #include "presentation/EventNotifier.h"
 
     class DeepSleepManager {
         private:
