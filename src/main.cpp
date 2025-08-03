@@ -16,7 +16,6 @@
 #include "infrastructure/actuators/BatteryLevelSensorActuator.h"
 #include "application/BatteryLevelService.h"
 #include "infrastructure/sleep/DeepSleepManager.h"
-#include "application/WaterLitersRangeCalculator.h"
 #include "application/LoadModeService.h"
 #include "application/WaterIntakeService.h"
 
@@ -34,8 +33,6 @@ PCF8574Input waterSensor5(pcf, 5);
 PCF8574Input waterSensor6(pcf, 6);
 PCF8574Input waterSensor7(pcf, 7);
 
-WaterLitersRangeCalculator waterLitersRangeCalculator(WATER_VOLUME);
-
 WaterLevelConverter waterLevelConverter(
 	waterSensor1, 
 	waterSensor2, 
@@ -44,8 +41,7 @@ WaterLevelConverter waterLevelConverter(
 	waterSensor5, 
 	waterSensor6, 
 	waterSensor7,
-	waterCommonPinActuator,
-	waterLitersRangeCalculator
+	waterCommonPinActuator
 );
 
 DeepSleepManager deepSleepManager;

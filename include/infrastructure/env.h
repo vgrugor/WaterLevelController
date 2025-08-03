@@ -14,14 +14,15 @@
     extern const unsigned int WATER_VOLUME;
     extern const unsigned int COUNT_BATTERY_LEVEL_READ;
 
-    extern const unsigned int WATER_SENSOR_1_LEVEL_PERCENT;
-    extern const unsigned int WATER_SENSOR_2_LEVEL_PERCENT;
-    extern const unsigned int WATER_SENSOR_3_LEVEL_PERCENT;
-    extern const unsigned int WATER_SENSOR_4_LEVEL_PERCENT;
-    extern const unsigned int WATER_SENSOR_5_LEVEL_PERCENT;
-    extern const unsigned int WATER_SENSOR_6_LEVEL_PERCENT;
-    extern const unsigned int WATER_SENSOR_7_LEVEL_PERCENT;
-    extern const unsigned int WATER_MIN_LEVEL_PERCENT;
+    extern const unsigned int WATER_MIN_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_1_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_2_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_3_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_4_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_5_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_6_LEVEL_LITER;
+    extern const unsigned int WATER_SENSOR_7_LEVEL_LITER;
+
     extern const unsigned long WATER_INTAKE_UPDATE_INTERVAL_MILLI_SECONDS;
     extern const unsigned long WATER_INTAKE_INTERVAL_GO_TO_SLEEP_IF_LEVEL_NOT_CHANGED_MINUTES;
 
@@ -40,7 +41,6 @@
     extern const String SERVER_PORT;
 
     extern const String SHOWER_UPDATE_SERVER_URI;
-    extern const String SHOWER_WATER_LEVEL_PERCENT_PARAM_NAME;
     extern const String SHOWER_WATER_LEVEL_LITER_PARAM_NAME;
     extern const String SHOWER_WATER_TEMPERATURE_PARAM_NAME;
     extern const String SHOWER_BATTERY_VOLTAGE_PARAM_NAME;

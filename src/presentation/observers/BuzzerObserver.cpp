@@ -29,19 +29,19 @@ void BuzzerObserver::update(EventType eventType, const String& message) {
             int level = message.toInt();
             int countSignal;
 
-            if (level == WATER_SENSOR_1_LEVEL_PERCENT) {
+            if (level == WATER_SENSOR_1_LEVEL_LITER) {
                 countSignal = 1;
-            } else if (level == WATER_SENSOR_2_LEVEL_PERCENT) {
+            } else if (level == WATER_SENSOR_2_LEVEL_LITER) {
                 countSignal = 2;
-            } else if (level == WATER_SENSOR_3_LEVEL_PERCENT) {
+            } else if (level == WATER_SENSOR_3_LEVEL_LITER) {
                 countSignal = 3;
-            } else if (level == WATER_SENSOR_4_LEVEL_PERCENT) {
+            } else if (level == WATER_SENSOR_4_LEVEL_LITER) {
                 countSignal = 4;
-            } else if (level == WATER_SENSOR_5_LEVEL_PERCENT) {
+            } else if (level == WATER_SENSOR_5_LEVEL_LITER) {
                 countSignal = 5;
-            } else if (level == WATER_SENSOR_6_LEVEL_PERCENT) {
+            } else if (level == WATER_SENSOR_6_LEVEL_LITER) {
                 countSignal = 6;
-            } else if (level == WATER_SENSOR_7_LEVEL_PERCENT) {
+            } else if (level == WATER_SENSOR_7_LEVEL_LITER) {
                 countSignal = 7;
             } else {
                 countSignal = 0;
