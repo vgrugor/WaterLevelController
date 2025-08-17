@@ -4,4 +4,5 @@
 
 ![WaterLevelController (2)](https://github.com/user-attachments/assets/3c300df7-9216-407d-ad4f-6b4e96ef614f)
 
-<img width="659" height="825" alt="Снимок экрана (26)" src="https://github.com/user-attachments/assets/a1ad8096-0807-4e4d-9c28-850f34865562" />
+
+<img width="665" height="833" alt="Снимок экрана (27)" src="https://github.com/user-attachments/assets/e4c32e6d-64af-4aed-8392-9d754a950453" />
