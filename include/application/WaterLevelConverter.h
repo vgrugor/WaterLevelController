@@ -29,6 +29,7 @@
                 WaterCommonPinActuator& waterCommonPinActuator
             );
             int getLiter();
+            void activateSensor(int sensorNumber);
     };
 
 #endif

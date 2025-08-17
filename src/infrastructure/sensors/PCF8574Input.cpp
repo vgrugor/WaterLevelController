@@ -19,3 +19,11 @@ float PCF8574Input::readValue() {
 bool PCF8574Input::isHigh() {
     return this->readValue() > 0.0;
 }
+
+void PCF8574Input::setHigh() {
+    this->pcf.write(this->pin, HIGH);
+}
+
+void PCF8574Input::setLow() {
+    this->pcf.write(this->pin, LOW);
+}

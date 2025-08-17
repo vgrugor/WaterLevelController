@@ -14,6 +14,8 @@
         PCF8574Input(PCF8574& pcf, int pin, unsigned long updateInterval = 0);
         float readValue() override;
         bool isHigh();
+        void setLow();
+        void setHigh();
     };
 
 #endif
