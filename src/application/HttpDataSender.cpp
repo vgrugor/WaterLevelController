@@ -56,15 +56,15 @@ String HttpDataSender::buildPath(
         + SHOWER_WATER_LEVEL_LITER_PARAM_NAME 
         + "=" 
         + literWaterLevelStr
-        + "?" 
+        + "&" 
         + SHOWER_WATER_TEMPERATURE_PARAM_NAME 
         + "=" 
         + temperatureStr
-        + "?" 
+        + "&" 
         + SHOWER_BATTERY_VOLTAGE_PARAM_NAME 
         + "=" 
-        + batteryVoltageStr;
-        + "?" 
+        + batteryVoltageStr
+        + "&" 
         + SHOWER_BATTERY_PERCENT_PARAM_NAME 
         + "=" 
         + batteryPercentStr;
