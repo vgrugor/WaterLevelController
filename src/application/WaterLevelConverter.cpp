@@ -32,6 +32,7 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_7_LEVEL_LITER;
     }
@@ -44,6 +45,7 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_6_LEVEL_LITER;
     }
@@ -56,6 +58,7 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_5_LEVEL_LITER;
     }
@@ -68,6 +71,7 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_4_LEVEL_LITER;
     }
@@ -80,6 +84,7 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_3_LEVEL_LITER;
     }
@@ -92,6 +97,7 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_2_LEVEL_LITER;
     }
@@ -104,10 +110,12 @@ int WaterLevelConverter::getLiter()
         );
 
         this->waterCommonPinActuator.setState(LOW);
+        this->activateSensor(0);
 
         return WATER_SENSOR_1_LEVEL_LITER;
     }
 
+    this->waterCommonPinActuator.setState(LOW);
     this->activateSensor(0);
     EventNotifier::getInstance().notifyObservers(
         EventType::READ_WATER_LEVEL, 
